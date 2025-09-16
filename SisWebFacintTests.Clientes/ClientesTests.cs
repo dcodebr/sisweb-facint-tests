@@ -18,6 +18,7 @@ public class ClientesTests
         if (Environment.GetEnvironmentVariable("CI") == "true")
         {
             options.AddArgument("--headless=new"); // modo headless atualizado
+            options.AddArgument("--window-size=1920,1080"); // define resolução grande
             options.AddArgument("--no-sandbox"); // obrigatório em runners Linux
             options.AddArgument("--disable-dev-shm-usage"); // evita problemas de memória
             options.AddArgument("--disable-gpu"); // geralmente seguro
