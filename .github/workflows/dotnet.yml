@@ -1,0 +1,68 @@
+name: .NET Build, Deploy and Selenium Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout do repositório atual
+      - name: Checkout Main Repository
+        uses: actions/checkout@v3
+
+      # 2. Checkout de outro repositório
+      - name: Checkout External Repository
+        uses: actions/checkout@v3
+        with:
+          repository: dcodebr/sisweb-facint
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: external-repo
+
+      # 3. Instala .NET
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      # 4. Restaura dependências
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # 5. Build da aplicação
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      # 6. Publica para pasta de saída
+      - name: Publish
+        run: dotnet publish -c Release -o ./publish
+
+      # 7. Instala Node.js + http-server
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install http-server
+        run: npm install -g http-server
+
+      # 8. Inicia servidor http-server em background
+      - name: Start http-server
+        run: |
+          nohup http-server ./external-repo -p 8080 &
+          sleep 5
+
+      # 9. Executa testes Selenium
+      - name: Run Selenium Tests
+        run: dotnet test ./SisWebFacintTests.Login\SisWebFacintTests.Login.csproj --logger "trx;LogFileName=test_results.trx"
+
+      # 10. Publica resultados de teste
+      - name: Publish Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: '**/TestResults/*.trx'
