@@ -5,6 +5,12 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      runSeleniumTests:
+        description: 'Executar testes Selenium?'
+        required: false
+        default: 'true'
 
 jobs:
   build-test:
@@ -58,7 +64,7 @@ jobs:
 
       # 9. Executa testes Selenium
       - name: Run Selenium Tests
-        run: dotnet test ./SisWebFacintTests.Login/SisWebFacintTests.Login.csproj --logger "trx;LogFileName=test_results.trx"
+        run: dotnet test --logger "trx;LogFileName=test_results.trx"
 
       # 10. Publica resultados de teste
       - name: Publish Test Results
