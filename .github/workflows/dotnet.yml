@@ -5,6 +5,12 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      runSeleniumTests:
+        description: 'Executar testes Selenium?'
+        required: false
+        default: 'true'
 
 jobs:
   build-test:
