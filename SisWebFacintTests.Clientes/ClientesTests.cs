@@ -100,7 +100,10 @@ public class ClientesTests
             Nome = colunas?[1].Text,
             CPF = colunas?[2].Text.Replace(".", "").Replace("-", ""),
             Endereco = colunas?[3].Text,
-            Celular = colunas?[4].Text
+            Celular = colunas?[4].Text.Replace("(", "")
+                                       .Replace(")", "")
+                                       .Replace("-", "")
+                                       .Replace(" ", "")
         };
 
         Assert.Multiple(() =>
