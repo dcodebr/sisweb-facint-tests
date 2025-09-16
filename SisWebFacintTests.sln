@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SisWebFacintTests.Login", "SisWebFacintTests.Login\SisWebFacintTests.Login.csproj", "{B94475BA-8C23-4151-A14C-9006A17106D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SisWebFacintTests.Clientes", "SisWebFacintTests.Clientes\SisWebFacintTests.Clientes.csproj", "{A281DE25-9912-4EBD-AF9F-589E4DA15F96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{B94475BA-8C23-4151-A14C-9006A17106D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B94475BA-8C23-4151-A14C-9006A17106D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B94475BA-8C23-4151-A14C-9006A17106D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A281DE25-9912-4EBD-AF9F-589E4DA15F96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A281DE25-9912-4EBD-AF9F-589E4DA15F96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A281DE25-9912-4EBD-AF9F-589E4DA15F96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A281DE25-9912-4EBD-AF9F-589E4DA15F96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

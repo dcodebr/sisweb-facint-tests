@@ -19,7 +19,4 @@
   <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SisWebFacintTests.Clientes\SisWebFacintTests.Clientes.csproj" />
-  </ItemGroup>
 </Project>
