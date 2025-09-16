@@ -12,8 +12,29 @@ public class LoginTests
     [SetUp]
     public void Setup()
     {
-        driver = new ChromeDriver();
-        driver.Manage().Window.Maximize();
+
+        var options = new ChromeOptions();
+
+        if (Environment.GetEnvironmentVariable("CI") == "true")
+        {
+            options.AddArgument("--headless=new"); // modo headless atualizado
+            options.AddArgument("--no-sandbox"); // obrigatório em runners Linux
+            options.AddArgument("--disable-dev-shm-usage"); // evita problemas de memória
+            options.AddArgument("--disable-gpu"); // geralmente seguro
+            options.AddArgument("--remote-debugging-port=9222");
+
+            options.AddArgument("--user-data-dir=/tmp/chrome-user-data-" + Guid.NewGuid());
+            options.AddArgument("--disable-extensions");
+            options.AddArgument("--disable-background-networking");
+            options.AddArgument("--disable-sync");
+
+        }
+        else
+        {
+            options.AddArgument("--start-maximized");
+        }
+        
+        driver = new ChromeDriver(options);
     }
 
     [Test]
