@@ -1,4 +1,3 @@
-using NuGet.Frameworks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -75,15 +74,19 @@ public class ClientesTests
         foreach (var c in dados.CPF)
         {
             txtCPF.SendKeys(c.ToString());
-            Thread.Sleep(50);    
+            Thread.Sleep(50);
         }
 
         txtCelular.Clear();
         foreach (var c in dados.Celular)
         {
             txtCelular.SendKeys(c.ToString());
-            Thread.Sleep(50);    
+            Thread.Sleep(50);
         }
+
+        var botaoAdicionar = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id("btnadicionar")));
+        botaoAdicionar.Click();
+
 
         btnAdicionar.Click();
 
